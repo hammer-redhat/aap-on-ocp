@@ -1,0 +1,33 @@
+---
+- name: Deploy AAP Operator on the East cluster.
+  hosts: localhost
+  tasks:
+    - name: Create the AAP clusterwide namespace and install AAP operator. 
+      redhat.openshift.k8s:
+        state: present
+        src: files/aap_operator.yml
+
+    - name: Ensure the k8s namespaces are present before continuing.
+      redhat.openshift.k8s:
+        name: "{{ item  }}"
+        api_version: v1
+        kind: Namespace
+        state: present
+      loop:
+        - ansible-automation-platform
+        - aap-24
+        - aap-24-dr
+
+    - name: Create a controller deployment from local files for primary/secondary site in aap-24 and aap-24-dr namespace. 
+      redhat.openshift.k8s:
+        state: present
+        src: files/{{ item }}
+      loop:
+        - controller-edb-01-admin-password.yml
+        - controller-edb-01-secret-key.yml
+        - controller-edb-02-admin-password.yml
+        - controller-edb-02-secret-key.yml
+        - external-postgres-configuration-secret-01.yml
+        - external-postgres-configuration-secret-02.yml
+        - aap-primary-deployment.yml
+        - aap-secondary-deployment.yml
