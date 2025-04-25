@@ -1,4 +1,13 @@
-# Using this repo
+## Overview
+### Repository Overview
+This repository provides Ansible playbooks and configuration files for deploying and managing Red Hat Ansible Automation Platform (RHAAP) on OpenShift (OCP) using the Ansible Automation Platform Operator. It is designed to test active/passive deployments and disaster recovery (DR) concepts with external PostgreSQL databases from a single Openshift instance. 
+
+### Features
+- Deploy the AAP Operator and Automation Controller across multiple namespaces on a single OpenShift cluster/instance
+- Automated secret creation including admin passwords and encryption keys
+- External database secret creation to enable testing of HA/DR concepts
+- Customizable YAML files for different deployments of Automation Controller
+
 ### Prerequisites 
 - oc binaries installed locally on the host running the playbook
 - Run the oc login command to authenticate to your Openshift cluster.
