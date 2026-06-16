@@ -2,14 +2,14 @@
 - name: Deploy AAP Operator on the East cluster.
   hosts: localhost
   tasks:
-    - name: Create the AAP clusterwide namespace and install AAP operator. 
+    - name: Create the AAP clusterwide namespace and install AAP operator.
       redhat.openshift.k8s:
         state: present
         src: files/aap_operator.yml
 
     - name: Ensure the k8s namespaces are present before continuing.
       redhat.openshift.k8s:
-        name: "{{ item  }}"
+        name: "{{ item }}"
         api_version: v1
         kind: Namespace
         state: present
@@ -18,7 +18,7 @@
         - aap-24
         - aap-24-dr
 
-    - name: Create a controller deployment from local files for primary/secondary site in aap-24 and aap-24-dr namespace. 
+    - name: Create a controller deployment from local files for primary/secondary site in aap-24 and aap-24-dr namespace.
       redhat.openshift.k8s:
         state: present
         src: files/{{ item }}

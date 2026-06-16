@@ -1,3 +1,4 @@
+---
 apiVersion: automationcontroller.ansible.com/v1beta1
 kind: AutomationController
 metadata:
@@ -6,7 +7,7 @@ metadata:
 spec:
   postgres_keepalives_count: 5
   postgres_keepalives_idle: 5
-  metrics_utility_cronjob_report_schedule: '@monthly'
+  metrics_utility_cronjob_report_schedule: "@monthly"
   create_preload_data: true
   route_tls_termination_mechanism: Edge
   garbage_collect_secrets: false
@@ -15,7 +16,7 @@ spec:
   admin_password_secret: controller-edb-01-admin-password
   no_log: true
   image_pull_policy: IfNotPresent
-  loadbalancer_ip: ''
+  loadbalancer_ip: ""
   projects_storage_size: 8Gi
   auto_upgrade: true
   task_privileged: false
